@@ -18,6 +18,7 @@ public class PlayerStats : MonoBehaviour // Where player stats are defined and c
         {
             SceneManager.LoadScene("Main");
         }
+        Debug.Log(health);
     }
 
     public void coinChange(int change)

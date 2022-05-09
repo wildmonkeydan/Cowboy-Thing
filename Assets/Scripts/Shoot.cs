@@ -16,13 +16,9 @@ public class Shoot : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player")
-        {
-            stats.healthChange(-10);
-        }
-        Invoke("end",2);
+        Invoke("end", 2);
     }
 
     void end()

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour // Player movement
 {
+    public PlayerStats stats;
     Rigidbody rb;
     public int jumpHeight;
     public int speed;
@@ -32,6 +33,10 @@ public class Movement : MonoBehaviour // Player movement
         if(collision.gameObject.tag == "enemy")
         {
             SceneManager.LoadScene("Main");
+        }
+        if(collision.gameObject.tag == "bullet")
+        {
+            stats.healthChange(-20);
         }
     }
 }

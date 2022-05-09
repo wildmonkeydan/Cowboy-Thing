@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public GameObject projectile;
     public PlayerStats stats;
+    public Transform shoot;
     bool canShoot = true;
     void Start()
     {
@@ -18,14 +19,14 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (canShoot)
+        if (canShoot && other.tag == "Player")
         {
-            GameObject bullet = Instantiate(projectile, transform.position, transform.rotation);
+            GameObject bullet = Instantiate(projectile, shoot.position, shoot.rotation);
             bullet.transform.LookAt(GameObject.Find("Player").transform);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.forward * 2);
+            rb.AddForce(bullet.transform.forward * 1000);
             canShoot = false;
             Invoke("resetShoot", 0.4f);
         }
