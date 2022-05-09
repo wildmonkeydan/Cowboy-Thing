@@ -46,7 +46,7 @@ public class AIPatrol : MonoBehaviour // Controls AI to move side to side on a p
     void Flip()
     {
         mustPatrol = false;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y,0);
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y-180,0);
         walkSpeed *= -1;
         mustPatrol = true;
     }

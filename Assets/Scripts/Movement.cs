@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour // Player movement
 {
@@ -28,5 +29,9 @@ public class Movement : MonoBehaviour // Player movement
     private void OnCollisionEnter(Collision collision) // Enable jump on collision
     {
         canJump = true;
+        if(collision.gameObject.tag == "enemy")
+        {
+            SceneManager.LoadScene("Main");
+        }
     }
 }
