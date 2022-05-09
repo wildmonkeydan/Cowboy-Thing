@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIPatrol : MonoBehaviour
+public class AIPatrol : MonoBehaviour // Controls AI to move side to side on a path
 {
     public float walkSpeed;
     [HideInInspector]

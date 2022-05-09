@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomPlatforms : MonoBehaviour
+public class RandomPlatforms : MonoBehaviour // Creates random platforms at set intervals
 {
     public GameObject[] platforms; // Get platforms
     void Start()
@@ -18,10 +18,5 @@ public class RandomPlatforms : MonoBehaviour
     void Update()
     {
             
-    }
-
-    public void buildingGen()
-    {
-
     }
 }

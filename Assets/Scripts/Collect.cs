@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collect : MonoBehaviour
+public class Collect : MonoBehaviour // Allows for collection of collectables
 {
-    public PlayerStats stats;
+    public PlayerStats stats; // Link to coin stats
     void Start()
     {
         
