@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour // Player movement
     public int jumpHeight;
     public int speed;
     bool canJump = true;
+    bool canWallJump = true;
+    float wallJumpDir;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,14 +27,27 @@ public class Movement : MonoBehaviour // Player movement
             rb.AddForce(0, jumpHeight, 0); // Jump
             canJump = false; // Disable jump
         }
+        if(Input.GetKey(KeyCode.Space) && canWallJump)
+        {
+            rb.AddForce(wallJumpDir * (jumpHeight / 2), jumpHeight, 0);
+            canWallJump = false;
+        }
+        if(transform.position.y < -15)
+        {
+            SceneManager.LoadScene("Main");
+        }
     }
 
     private void OnCollisionEnter(Collision collision) // Enable jump on collision
     {
-        canJump = true;
-        if(collision.gameObject.tag == "enemy")
+        if (collision.contacts[0].normal == Vector3.up)
         {
-            SceneManager.LoadScene("Main");
+            canJump = true;
+        }
+        if(collision.contacts[0].normal == Vector3.right || collision.contacts[0].normal == Vector3.left)
+        {
+            canWallJump = true;
+            wallJumpDir = collision.contacts[0].normal.x;
         }
         if(collision.gameObject.tag == "bullet")
         {

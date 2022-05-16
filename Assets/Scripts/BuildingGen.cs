@@ -16,7 +16,7 @@ public class BuildingGen : MonoBehaviour // Random gen a building using segments
         
     }
 
-    void Build(int size, Vector3 origin) // Builds the building when called, using the size as a reference for how many floors and the origin for where the ground floor is.
+    public void Build(int size, Vector3 origin) // Builds the building when called, using the size as a reference for how many floors and the origin for where the ground floor is.
     {
         for(int i = 0; i < size; i++)
         {
@@ -29,7 +29,7 @@ public class BuildingGen : MonoBehaviour // Random gen a building using segments
         }
     }
 
-    bool randomBool() // Returns a random bool 
+    public bool randomBool() // Returns a random bool 
     {
         return (Random.value > 0.5f);
     }
