@@ -47,7 +47,7 @@ public class RandomPlatforms : MonoBehaviour // Creates random platforms at set 
             bool coin = build.randomBool();
             if (coin)
             {
-                Vector3 coinPos = new Vector3(startPos.x + i * 9, platforms[(int)rand].transform.localScale.y / 2 + 1, 0);
+                Vector3 coinPos = new Vector3(startPos.x + i * 9, platforms[(int)rand].transform.localScale.y / 2 + 1, -0.1f);
                 Instantiate(coinString, coinPos, transform.rotation);
             }
             rand = Random.Range(0f, platforms.Length);
