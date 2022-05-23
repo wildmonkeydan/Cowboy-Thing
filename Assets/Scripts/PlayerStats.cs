@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour // Where player stats are defined and changed
 {
     public int coins;
     public int health = 100;
+    public Text[] counters;
     void Start()
     {
         
@@ -18,7 +20,9 @@ public class PlayerStats : MonoBehaviour // Where player stats are defined and c
         {
             SceneManager.LoadScene("Main");
         }
-        Debug.Log(health);
+
+        counters[0].text = coins.ToString();
+        counters[1].text = health.ToString();
     }
 
     public void coinChange(int change)

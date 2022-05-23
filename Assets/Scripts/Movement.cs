@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour // Player movement
     public Camera cam;
     public Transform shoot;
     public Transform pivot;
+    public Animator animator;
+    public SpriteRenderer sprite;
     Rigidbody rb;
     public int jumpHeight;
     public int speed;
@@ -26,6 +28,25 @@ public class Movement : MonoBehaviour // Player movement
     {
         float input = Input.GetAxisRaw("Horizontal"); // Get left and right
         rb.AddForce(input*speed, 0, 0); // Move character
+        if (input >= 0)
+        {
+            sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;  
+        }
+
+        if(input != 0)
+        {
+            animator.SetBool("isMoving", true);
+            pivot.gameObject.SetActive(false);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+            pivot.gameObject.SetActive(true);
+        }
 
         Vector3 mousePos = cam.WorldToScreenPoint(transform.position);
         mousePos.z = 0;
@@ -40,6 +61,7 @@ public class Movement : MonoBehaviour // Player movement
         {
             rb.AddForce(0, jumpHeight, 0); // Jump
             canJump = false; // Disable jump
+            pivot.gameObject.SetActive(false);
         }
         if(Input.GetKey(KeyCode.Space) && canWallJump)
         {
@@ -58,6 +80,8 @@ public class Movement : MonoBehaviour // Player movement
         {
             SceneManager.LoadScene("Main");
         }
+        bool jump = !canJump & !canWallJump;
+        animator.SetBool("isJumping",jump);
     }
 
     private void OnCollisionEnter(Collision collision) // Enable jump on collision
@@ -74,11 +98,19 @@ public class Movement : MonoBehaviour // Player movement
         if(collision.gameObject.tag == "bullet")
         {
             stats.healthChange(-20);
+            sprite.color = Color.red;
+            Invoke("coulorReset", 0.5f);
         }
     }
 
     void resetShoot()
     {
         canShoot = true;
+        pivot.gameObject.SetActive(true);
+    }
+
+    void coulorReset()
+    {
+        sprite.color = Color.white;
     }
 }
